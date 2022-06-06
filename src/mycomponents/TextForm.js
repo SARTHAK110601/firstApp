@@ -3,9 +3,6 @@ import React, { useState } from "react";
 export default function TextForm(props) {
   const [Text, setText] = useState("");
 
-  //   const setText() =>{
-  //       console.log("This is setText ");
-  //   }
   const handleUpclick = () => {
     let newText = Text.toUpperCase();
     setText(newText);
@@ -19,11 +16,7 @@ export default function TextForm(props) {
     setText(newText);
   };
   const handleCopy = () => {
-    var copyText = document.getElementById("exampleFormControlTextarea1");
-    copyText.select();
-    document.getSelection().removeAllRanges();
-    // copyText.setSelectionRange(0, 99999);
-    navigator.clipboard.writeText(copyText.value);
+    navigator.clipboard.writeText(Text);
   };
 
   const handleonchange = (event) => {
@@ -70,7 +63,7 @@ export default function TextForm(props) {
         <h2>Your text summary</h2>
         <p>
           {
-            Text.split(" ").filter((element) => {
+            Text.split(/\s+/).filter((element) => {
               return element.length !== 0;
             }).length
           }{" "}
